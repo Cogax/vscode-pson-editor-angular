@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, HostListener } from "@angular/core";
 import { provideVSCodeDesignSystem, vsCodeButton } from "@vscode/webview-ui-toolkit";
 import { vscode } from "./utilities/vscode";
 
@@ -34,5 +34,10 @@ export class AppComponent {
       command: "hello",
       text: "Hey there partner! 🤠",
     });
+  }
+
+  @HostListener('window:message', ['$event'])
+  handleMessage(event: MessageEvent) {
+    console.log(event.data);
   }
 }

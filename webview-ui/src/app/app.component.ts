@@ -1,12 +1,17 @@
-import { Component, HostListener } from "@angular/core";
-import { provideVSCodeDesignSystem, vsCodeButton } from "@vscode/webview-ui-toolkit";
-import { PsonFile } from "./models/pson";
+import { ChangeDetectionStrategy, Component, HostListener, OnInit } from "@angular/core";
+import { provideVSCodeDesignSystem, vsCodeButton, vsCodeTextField } from "@vscode/webview-ui-toolkit";
+import { map, Observable, Subject, takeUntil } from "rxjs";
+import { BaseService } from "./base/base.service";
+import { PsonFile, PsonProperty } from "./models/pson";
 import { vscode } from "./utilities/vscode";
 
 // In order to use the Webview UI Toolkit web components they
 // must be registered with the browser (i.e. webview) using the
 // syntax below.
-provideVSCodeDesignSystem().register(vsCodeButton());
+provideVSCodeDesignSystem().register(
+  vsCodeButton(),
+  vsCodeTextField(),
+);
 
 // To register more toolkit components, simply import the component
 // registration function and call it from within the register
@@ -26,10 +31,22 @@ provideVSCodeDesignSystem().register(vsCodeButton());
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
-  title = "hello-world";
-  psonFile: PsonFile | null = null;
+export class AppComponent extends BaseService implements OnInit {
+
+  private psonFileSubject = new Subject<PsonFile>();
+  private psonFile: PsonFile | null = null;
+
+  public title = "hello-world";
+  public properties$: Observable<PsonProperty[]>;
+  
+  constructor() {
+    super();   
+    this.properties$ = this.psonFileSubject.pipe(takeUntil(this.destroy$), map(f => f.properties));
+  }
+
+  ngOnInit(): void {}
 
   handleHowdyClick() {
     console.log('current psonFile', this.psonFile);
@@ -45,6 +62,7 @@ export class AppComponent {
 
     if(event.data.type === 'document_update') {
       this.psonFile = <PsonFile>{...event.data.data};
+      this.psonFileSubject.next(<PsonFile>{...event.data.data})
     }
   }
 }

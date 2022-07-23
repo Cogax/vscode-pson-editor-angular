@@ -32,6 +32,7 @@ export class AppComponent {
   psonFile: PsonFile | null = null;
 
   handleHowdyClick() {
+    console.log('current psonFile', this.psonFile);
     vscode.postMessage({
       command: "hello",
       text: "Hey there partner! 🤠",
@@ -40,6 +41,10 @@ export class AppComponent {
 
   @HostListener('window:message', ['$event'])
   handleMessage(event: MessageEvent) {
-    console.log(event.data);
+    console.log('received vscode message', event.data);
+
+    if(event.data.type === 'document_update') {
+      this.psonFile = <PsonFile>{...event.data.data};
+    }
   }
 }

@@ -10,14 +10,19 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:hello-world.showHelloWorld"
+    "onCustomEditor:wacosoft.psonEditor"
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
+    "customEditors": [
       {
-        "command": "hello-world.showHelloWorld",
-        "title": "Hello World (Angular): Show"
+        "viewType": "wacosoft.psonEditor",
+        "displayName": "Pson Editor",
+        "selector": [
+          {
+            "filenamePattern": "*.pson"
+          }
+        ]
       }
     ]
   },

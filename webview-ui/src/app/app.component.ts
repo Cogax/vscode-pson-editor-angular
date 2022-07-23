@@ -1,5 +1,6 @@
 import { Component, HostListener } from "@angular/core";
 import { provideVSCodeDesignSystem, vsCodeButton } from "@vscode/webview-ui-toolkit";
+import { PsonFile } from "./models/pson";
 import { vscode } from "./utilities/vscode";
 
 // In order to use the Webview UI Toolkit web components they
@@ -28,6 +29,7 @@ provideVSCodeDesignSystem().register(vsCodeButton());
 })
 export class AppComponent {
   title = "hello-world";
+  psonFile: PsonFile | null = null;
 
   handleHowdyClick() {
     vscode.postMessage({

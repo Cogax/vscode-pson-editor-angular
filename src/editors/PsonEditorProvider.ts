@@ -19,16 +19,9 @@ export class PsonEditorProvider implements vscode.CustomTextEditorProvider {
   ): void | Thenable<void> {
     PsonEditorPanel.render(webviewPanel, this.context.extensionUri);
 
-    function updateWebview() {
-      webviewPanel.webview.postMessage({
-        type: 'document_update',
-        data: document.getText(),
-      });
-    }
-
     const changeDocumentSubscription = vscode.workspace.onDidChangeTextDocument((e) => {
       if (e.document.uri.toString() === document.uri.toString()) {
-        updateWebview();
+        this.updateWebview(document, webviewPanel);
       }
     });
 
@@ -44,7 +37,7 @@ export class PsonEditorProvider implements vscode.CustomTextEditorProvider {
       }
     });
 
-    updateWebview();
+    this.updateWebview(document, webviewPanel);
   }
 
   getHtmlForWebview(webview: vscode.Webview): string {
@@ -75,6 +68,13 @@ export class PsonEditorProvider implements vscode.CustomTextEditorProvider {
         </body>
       </html>
     `;
+  }
+
+  private updateWebview(document: vscode.TextDocument, webviewPanel: vscode.WebviewPanel) {
+    webviewPanel.webview.postMessage({
+      type: 'document_update',
+      data: this.getDocumentAsJson(document),
+    });
   }
 
   private editProperty(document: vscode.TextDocument, propertyName: string, value: string) {

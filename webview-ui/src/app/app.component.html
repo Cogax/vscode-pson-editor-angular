@@ -1,7 +1,6 @@
 <main>
   <h1>Hello world!</h1>
-  <vscode-button (click)="handleHowdyClick()">Howdy!</vscode-button>
   <div *ngFor="let property of properties$ | async">
-    <vscode-text-field value="{{ property.value }}">{{ property.name }}</vscode-text-field>
+    <vscode-text-field (input)="propertyChanged(property, $event.target)" value="{{ property.value }}">{{ property.name }}</vscode-text-field>
   </div>
 </main>

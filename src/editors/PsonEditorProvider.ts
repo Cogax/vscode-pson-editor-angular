@@ -31,8 +31,8 @@ export class PsonEditorProvider implements vscode.CustomTextEditorProvider {
 
     webviewPanel.webview.onDidReceiveMessage((e) => {
       switch (e.type) {
-        case 'editor_update':
-          this.editProperty(document, e.property, e.data);
+        case 'property_update':
+          this.editProperty(document, e.property.name, e.property.value);
           return;
       }
     });
@@ -77,10 +77,10 @@ export class PsonEditorProvider implements vscode.CustomTextEditorProvider {
     });
   }
 
-  private editProperty(document: vscode.TextDocument, propertyName: string, value: string) {
+  private editProperty(document: vscode.TextDocument, name: string, value: string) {
     const json = this.getDocumentAsJson(document);
     for (const property of json.properties) {
-      if (property.name === propertyName) {
+      if (property.name === name) {
         property.value = value;
         return this.updateTextDocument(document, json);
       }

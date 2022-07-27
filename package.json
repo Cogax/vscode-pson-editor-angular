@@ -2,6 +2,7 @@
   "name": "pson-editor",
   "displayName": "PSON Editor",
   "description": "Editor for PSON files.",
+  "repository": "github:Cogax/vscode-pson-editor-angular",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.46.0"

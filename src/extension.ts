@@ -1,6 +1,6 @@
 import { ExtensionContext } from "vscode";
-import { PsonEditorProvider } from "./editors/PsonEditorProvider";
+import { PsonCustomEditorProvider } from "./editors/PsonCustomEditorProvider";
 
 export function activate(context: ExtensionContext) {
-  context.subscriptions.push(PsonEditorProvider.register(context));
+  context.subscriptions.push(PsonCustomEditorProvider.register(context));
 }

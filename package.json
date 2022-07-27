@@ -10,13 +10,13 @@
     "Other"
   ],
   "activationEvents": [
-    "onCustomEditor:wacosoft.psonEditor"
+    "onCustomEditor:wacosoft.customPsonEditor"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "customEditors": [
       {
-        "viewType": "wacosoft.psonEditor",
+        "viewType": "wacosoft.customPsonEditor",
         "displayName": "Pson Editor",
         "selector": [
           {

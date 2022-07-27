@@ -1,6 +1,6 @@
 <main>
   <h1>Hello world!</h1>
-  <div *ngFor="let property of properties$ | async">
-    <vscode-text-field (input)="propertyChanged(property, $event.target)" value="{{ property.value }}">{{ property.name }}</vscode-text-field>
+  <div *ngFor="let property of (psonFileService.psonFile$ | async)?.properties ?? []">
+    <vscode-text-field name="{{ property.name }}" value="{{ property.value }}" (change)="onEditProperty($event)" >{{ property.name }}</vscode-text-field>
   </div>
 </main>

@@ -22,23 +22,16 @@ provideVSCodeDesignSystem().register(
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent extends BaseService implements OnInit {
-  private propertyChangedSubject = new Subject<PsonProperty>();
-
-  public title = "hello-world";
-  public properties$: Observable<PsonProperty[]>;
+  public title = "Wacosoft PSON Editor - Proof of Concept";
   
-  constructor(private service: PsonFileService) {
+  constructor(public psonFileService: PsonFileService) {
     super(); 
-    this.properties$ = this.service.properties$.pipe(takeUntil(this.destroy$));
   }
 
-  ngOnInit(): void {
-    this.propertyChangedSubject.pipe(takeUntil(this.destroy$), debounceTime(150))
-    .subscribe(p => this.service.updateProperty(p));
-  }
+  ngOnInit(): void { }
 
-  public propertyChanged(property: PsonProperty, eventTarget: EventTarget | null): void {
-    const target = eventTarget as HTMLInputElement;
-    this.propertyChangedSubject.next(<PsonProperty>{ ...property, value: target.value });
+  onEditProperty(e: Event){
+    const inputElement = (e.target as HTMLInputElement);
+    this.psonFileService.editProperty(inputElement.name, inputElement.value);
   }
 }

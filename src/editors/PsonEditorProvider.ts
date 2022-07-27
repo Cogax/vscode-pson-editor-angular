@@ -22,7 +22,20 @@ export class PsonEditorProvider implements vscode.CustomTextEditorProvider {
     const changeDocumentSubscription = vscode.workspace.onDidChangeTextDocument((e) => {
       if (e.document.uri.toString() === document.uri.toString()) {
         this.updateWebview(document, webviewPanel);
+
+        // Wenn Dokument geändert wurde, und wir keine lokale, offene Änderungen
+        // haben, dann soll die Webview aktualisiert werden.
+        // Falls wir lokale änderungen haben, soll die Webview nicht
+        // aktualisiert werden
       }
+    });
+
+    vscode.workspace.onWillSaveTextDocument((e) => {
+      console.log('willsave');
+    });
+
+    vscode.workspace.onDidSaveTextDocument((e) => {
+      console.log('didsave');
     });
 
     webviewPanel.onDidDispose(() => {
@@ -103,6 +116,8 @@ export class PsonEditorProvider implements vscode.CustomTextEditorProvider {
   private updateTextDocument(document: vscode.TextDocument, json: any) {
     const edit = new vscode.WorkspaceEdit();
     edit.replace(document.uri, new vscode.Range(0, 0, document.lineCount, 0), JSON.stringify(json, null, 4));
+    vscode.workspace.applyEdit
     return vscode.workspace.applyEdit(edit);
+
   }
 }

@@ -9,3 +9,31 @@ main {
 main > * {
   margin: 1rem 0;
 }
+
+.bold {
+  font-weight: bold;
+}
+
+.property-select {
+  margin-bottom: 3px;
+  cursor: pointer;
+  color: var(--panel-tab-foreground);
+}
+
+.property-select:hover {
+  color: var(--panel-tab-active-foreground);
+  fill: currentcolor;
+}
+
+.property-select.active {
+  color: var(--panel-tab-active-foreground);
+  fill: currentcolor;
+}
+
+.border-right {
+  border-right: calc(var(--border-width) * 1px) solid var(--divider-background);
+}
+
+vscode-panel-view > div.row {
+  width: 100%;
+}

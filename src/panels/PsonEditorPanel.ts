@@ -13,6 +13,7 @@ export class PsonEditorPanel {
   private static _getWebviewContent(webview: Webview, extensionUri: Uri) {
     // The CSS file from the Angular build output
     const stylesUri = getUri(webview, extensionUri, ["webview-ui", "build", "styles.css"]);
+    const bootstrpGridUri = getUri(webview, extensionUri, ["webview-ui", "build", "assets", "bootstrap-grid.min.css"]);
     // The JS files from the Angular build output
     const runtimeUri = getUri(webview, extensionUri, ["webview-ui", "build", "runtime.js"]);
     const polyfillsUri = getUri(webview, extensionUri, ["webview-ui", "build", "polyfills.js"]);
@@ -26,6 +27,7 @@ export class PsonEditorPanel {
           <meta charset="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <link rel="stylesheet" type="text/css" href="${stylesUri}">
+          <link rel="stylesheet" type="text/css" href="${bootstrpGridUri}">
           <title>Hello World</title>
         </head>
         <body>

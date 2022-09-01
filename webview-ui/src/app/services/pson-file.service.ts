@@ -10,6 +10,9 @@ import { vscode } from "../utilities/vscode";
   export class PsonFileService extends BaseService {
     private psonFileSubject = new BehaviorSubject<PsonFile | null>(null);
     public psonFile$: Observable<PsonFile>;
+    public get psonFile() {
+      return this.psonFileSubject.value;
+    } 
 
     constructor() {
       super();

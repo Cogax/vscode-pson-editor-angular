@@ -18,6 +18,17 @@ main > * {
   margin-bottom: 3px;
   cursor: pointer;
   color: var(--panel-tab-foreground);
+  line-height: 20px;
+}
+
+.property-select::before {
+  content: ' ';
+  display: inline-block;
+  width: 3px;
+  background: transparent;
+  height: 18px;
+  margin-bottom: -5px;
+  margin-right: 5px;
 }
 
 .property-select:hover {
@@ -25,9 +36,17 @@ main > * {
   fill: currentcolor;
 }
 
+.property-select:hover::before {
+  background-color: var(--panel-tab-active-foreground);
+}
+
 .property-select.active {
   color: var(--panel-tab-active-foreground);
   fill: currentcolor;
+}
+
+.property-select.active::before {
+  background-color: var(--panel-tab-active-foreground);
 }
 
 .border-right {
@@ -36,4 +55,8 @@ main > * {
 
 vscode-panel-view > div.row {
   width: 100%;
+}
+
+vscode-divider {
+  margin: 0 !important;
 }

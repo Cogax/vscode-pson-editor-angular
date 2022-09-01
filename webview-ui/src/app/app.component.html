@@ -1,30 +1,27 @@
 <main>
   <h1>MLP PM Designer</h1>
-  <!-- <div *ngFor="let property of (psonFileService.psonFile$ | async)?.properties ?? []">
-    <vscode-text-field name="{{ property.name }}" value="{{ property.value }}" (change)="onEditProperty($event)" >{{ property.name }}</vscode-text-field>
-  </div> -->
   <vscode-divider></vscode-divider>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col col-3 border-right">
+      <div class="col col-auto border-right">
         <h4>Merkmale</h4>
         <div *ngFor="let property of (psonFileService.psonFile$ | async)?.properties ?? []">
           <div class="property-select" [ngClass]="{ 'active': property.name === (property$ | async)?.name}" (click)="onPropertySelect(property.name)">{{ property.name }}</div>
         </div>
       </div>
-      <div class="col">
-        <vscode-panels aria-label="Default">
+      <div class="col col-sm-6 col-md-7 col-lg-8">
+        <vscode-panels *ngIf="property$ | async as property" aria-label="Default">
           <vscode-panel-tab id="tab-property">Merkmal</vscode-panel-tab>
           <vscode-panel-tab id="tab-values">Werte</vscode-panel-tab>
           <vscode-panel-tab id="tab-comment">Kommentar</vscode-panel-tab>
-          <vscode-panel-view *ngIf="property$ | async as property" id="tab-view-property">
+          <vscode-panel-view id="tab-view-property">
             <div class="row">
               <div class="col">
                 <div class="row">
                   <div class="col col-2 bold">
                     Name:
                   </div>
-                  <div class="col">
+                  <div class="col col-10">
                     {{ property.name }}
                   </div>
                 </div>
@@ -32,35 +29,35 @@
                   <div class="col col-2 bold">
                     Typ:
                   </div>
-                  <div class="col">
+                  <div class="col col-10">
                     {{ property.type }}
                   </div>
                 </div>
               </div>
             </div>
           </vscode-panel-view>
-          <vscode-panel-view *ngIf="property$ | async as property" id="tab-view-values">
+          <vscode-panel-view id="tab-view-values">
             <div class="row">
               <div class="col">
                 <div class="row">
                   <div class="col col-2 bold">
                     Wert:
                   </div>
-                  <div class="col">
-                    <vscode-text-field name="{{ property.name }}" value="{{ property.value }}" (change)="onEditProperty($event)" ></vscode-text-field>
+                  <div class="col col-10">
+                    <vscode-text-field name="{{ property.name }}" value="{{ property.value }}" (change)="onEditProperty($event)"></vscode-text-field>
                   </div>
                 </div>
               </div>
             </div>
           </vscode-panel-view>
-          <vscode-panel-view *ngIf="property$ | async as property" id="tab-view-comment">
+          <vscode-panel-view id="tab-view-comment">
             <div class="row">
               <div class="col">
                 <div class="row">
                   <div class="col col-2 bold">
                     Kommentar:
                   </div>
-                  <div class="col">
+                  <div class="col col-10">
                     {{ property.comment }}
                   </div>
                 </div>

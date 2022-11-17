@@ -21,3 +21,13 @@ npm install -g vsce
 # 3. Package
 vsce package
 ```
+
+## Links
+
+- [Visual Studio Code Extension API](https://code.visualstudio.com/api)
+- [Custom Editor API](https://code.visualstudio.com/api/extension-guides/custom-editors)
+- [Custom Editor - Sample](https://github.com/microsoft/vscode-extension-samples/tree/main/custom-editor-sample)
+- [Webview UI Toolkit](https://github.com/microsoft/vscode-webview-ui-toolkit)
+- [Webview UI Toolkit - Getting Started Guide](https://github.com/microsoft/vscode-webview-ui-toolkit/blob/main/docs/getting-started.md)
+- [Webview UI Toolkit - Framework Samples](https://github.com/microsoft/vscode-webview-ui-toolkit-samples/tree/main/frameworks)
+- [Webview UI Toolkit - Extended Sample](https://github.com/microsoft/vscode-webview-ui-toolkit-samples/tree/main/default/notepad)

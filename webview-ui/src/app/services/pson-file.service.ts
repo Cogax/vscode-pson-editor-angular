@@ -66,10 +66,13 @@ import { vscode } from "../utilities/vscode";
     public editProperty(name: string, newValue: string) {
       const psonFile = this.psonFileSubject.value;
       const property = psonFile?.properties.find(p => p.name === name);
+
       if(!property) return;
-      console.log('edit property', name, newValue);
+
       property.value = newValue;
+
       this.psonFileSubject.next(psonFile);
+
       vscode.postMessage({
         type: 'edit',
         updatedProperty: property

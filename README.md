@@ -24,7 +24,11 @@ vsce package
 
 ## Links
 
-- [Visual Studio Code Extension API](https://code.visualstudio.com/api)
+- [Visual Studio Code - Open Source](https://github.com/microsoft/vscode)
+- [Visual Studio Code - Architecture](https://code.visualstudio.com/docs/editor/whyvscode#_robust-and-extensible-architecture)
+- [Electron - Technology behind Visual Studio Code](https://github.com/electron/electron)
+- [Visual Studio Code - Extension API](https://code.visualstudio.com/api)
+- [Visual Studio Code - Extension Capabilities](https://code.visualstudio.com/api/extension-capabilities/overview)
 - [Custom Editor API](https://code.visualstudio.com/api/extension-guides/custom-editors)
 - [Custom Editor - Sample](https://github.com/microsoft/vscode-extension-samples/tree/main/custom-editor-sample)
 - [Webview UI Toolkit](https://github.com/microsoft/vscode-webview-ui-toolkit)
